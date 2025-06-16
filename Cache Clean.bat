@@ -22,18 +22,30 @@ echo.
 
 :: Delete Recent files
 echo ----------Deleting Recent Files----------
-del /f /q "%APPDATA%\Microsoft\Windows\Recent\*.*"
+for %%f in ("%APPDATA%\Microsoft\Windows\Recent\*.*") do (
+    echo Deleting: %%f
+    del /f /q "%%f"
+)
 echo.
 
 :: Delete Temp files
 echo ----------Deleting Temp Files----------
-del /f /q "%TEMP%\*.*"
-for /d %%d in ("%TEMP%\*") do rd /s /q "%%d"
+for %%f in ("%TEMP%\*.*") do (
+    echo Deleting: %%f
+    del /f /q "%%f"
+)
+for /d %%d in ("%TEMP%\*") do (
+    echo Deleting folder: %%d
+    rd /s /q "%%d"
+)
 echo.
 
 :: Delete Prefetch files
 echo ----------Deleting Prefetch Files----------
-del /f /q "C:\Windows\Prefetch\*.*"
+for %%f in ("C:\Windows\Prefetch\*.*") do (
+    echo Deleting: %%f
+    del /f /q "%%f"
+)
 echo.
 
 echo ********************************************
